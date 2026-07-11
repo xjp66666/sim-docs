@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 The WPI Robotics Library (WPILib) is the standard software library provided for teams to write code for their FRC robots. You will spend most of the time working with it.
 
+## Installation
+
 [Click on here to download](https://github.com/wpilibsuite/allwpilib/releases)
 
 WPILib supports Windows, MacOS and Linux, but be aware that Windows 10 support might be ended in 2027 due to the release of new control system. You also want to make sure that you are using the correct version according to the control system we will use in 2027.
@@ -18,34 +20,74 @@ WPILib supports Windows, MacOS and Linux, but be aware that Windows 10 support m
   <TabItem value="win" label="Windows">
     Windows 10+ users can right click on the downloaded disk image and select `Mount` to open it. Then launch WPILibInstaller.exe. 
     Upon opening the installer, you’ll be presented with the below screen. Go ahead and press `Start`.
-
-    ![](https://docs.wpilib.org/en/stable/_images/installer-start.webp)
-
-    ![](https://docs.wpilib.org/en/stable/_images/installer-options.webp)
-
-    If this is your first time using WPILib, `Everything` is recommended.
-    Choose `Install for this User` if you do not want your WPILib to be used by other users of this device. Otherwise, choose `Install for all Users`
-
-    ![](https://docs.wpilib.org/en/stable/_images/installer-vscode-download.webp)
-
-    If this is your first time using WPILib, `Download for this computer only` is recommended.
-
-    ![](https://docs.wpilib.org/en/stable/_images/installer-installing.webp)
-
-    Wait for the Installation to complete.
-
-    ![](https://docs.wpilib.org/en/stable/_images/installer-finish.webp)
-
-    After installation is complete, you will be presented with the finished screen. Click on `Finish` to quit the installer.
-
   </TabItem>
   <TabItem value="mac" label="macOS">
-    I am macOS.
+    macOS users can double click on the downloaded `dmg` and then select `WPILibInstaller` to launch the application.
   </TabItem>
   <TabItem value="linux" label="Linux">
-    I am Linux.
+    Linux users should extract the downloaded `.tar.gz` and then launch `WPILibInstaller`. Ubuntu treats executables in the file explorer as shared libraries, so double-clicking won’t run them. Run the following commands in a terminal instead with `<version>` replaced with the version you’re installing.
+    ```bash
+    $ tar -xf WPILib_Linux-<version>.tar.gz
+    $ cd WPILib_Linux-<version>/
+    $ ./WPILibInstaller
+    ```
   </TabItem>
 </Tabs>
+
+![](https://docs.wpilib.org/en/stable/_images/installer-start.webp)
+
+![](https://docs.wpilib.org/en/stable/_images/installer-options.webp)
+
+If this is your first time using WPILib, `Everything` is recommended.
+Choose `Install for this User` if you do not want your WPILib to be used by other users of this device. Otherwise, choose `Install for all Users`
+
+![](https://docs.wpilib.org/en/stable/_images/installer-vscode-download.webp)
+
+If this is your first time using WPILib, `Download for this computer only` is recommended.
+
+![](https://docs.wpilib.org/en/stable/_images/installer-installing.webp)
+
+Wait for the Installation to complete.
+
+![](https://docs.wpilib.org/en/stable/_images/installer-finish.webp)
+
+After installation is complete, you will be presented with the finished screen. Click on `Finish` to quit the installer.
+
+## What is installed
+
+- Visual Studio Code - The supported IDE for 2019 and later robot code development. The offline installer sets up a separate copy of VS Code for WPILib development, even if you already have VS Code on your machine. This is done because some of the settings that make the WPILib setup work may break existing workflows if you use VS Code for other projects.
+
+- C++ Compiler - The toolchains for building C++ code for the roboRIO
+
+- Gradle - The specific version of Gradle used for building/deploying C++ or Java robot code
+
+- Java JDK/JRE - A specific version of the Java JDK/JRE that is used to build Java robot code and to run any of the Java based Tools (Dashboards, etc.). This exists side by side with any existing JDK installs and does not overwrite the JAVA_HOME variable
+
+- WPILib Tools - SmartDashboard, Shuffleboard, RobotBuilder, OutlineViewer, PathWeaver, Glass, SysId, Data Log Tool, roboRIO Team Number Setter, AdvantageScope, Elastic, WPIcal
+
+- WPILib Dependencies - OpenCV, etc.
+
+- VS Code Extensions - WPILib and Java/C++/Python extensions for robot code development in VS Code
+
+- Documentation - Offline copies of this frc-docs documentation and Java/C++/Python APIs
+
+## Uninstalling
+
+<Tabs groupId="OS">
+  <TabItem value="win" label="Windows">
+    1. Delete the appropriate wpilib folder (`C:\Users\Public\wpilib\YYYY` where YYYY is the year to uninstall)
+
+    2. Delete the desktop icons at `C:\Users\Public\Public Desktop`
+  </TabItem>
+  <TabItem value="mac" label="macOS">
+    Delete the appropriate wpilib folder (`~/wpilib/YYYY` where YYYY is the year to uninstall)
+  </TabItem>
+  <TabItem value="linux" label="Linux">
+    Delete the appropriate wpilib folder (`~/wpilib/YYYY` where YYYY is the year to uninstall). eg `rm -rf ~/wpilib/YYYY`
+  </TabItem>
+</Tabs>
+
+***
 
 Congratulations! Now you have taken your first step into FRC programming.
 
