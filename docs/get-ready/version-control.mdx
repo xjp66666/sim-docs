@@ -1,0 +1,116 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Version Control
+
+Version control tracks changes to files over time, so you can see what changed, undo mistakes, and let multiple people work on the same project without overwriting each other. Git is the most popular vision-control tool programmers use. In this tutorial we are going to talk about the installation and configuration of Git, as well as how to use Git repo platforms like GitHub.
+
+## Installation
+
+[Official download page](https://git-scm.com/install)
+
+<Tabs groupId="operating-systems">
+  <TabItem value="win" label="Windows">
+    Click on the [Click here to download](https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.2/Git-2.55.0.2-64-bit.exe) link
+  </TabItem>
+  <TabItem value="mac" label="macOS">
+    Choose one of these options:
+
+    **Homebrew**
+
+    Install homebrew if you don't already have it, then:
+
+    `$ brew install git`
+
+---
+
+    **MacPorts**
+
+    Install MacPorts if you don't already have it, then:
+
+    `$ sudo port install git`
+
+---
+
+    **Xcode Command Line Tools**
+
+    Apple ships a binary package of Git with Xcode Command Line Tools. You can install this via:
+
+    `$ xcode-select --install`
+
+  </TabItem>
+  <TabItem value="linux" label="Linux">
+    **Debian/Ubuntu**
+
+    For the latest stable version for your release of Debian/Ubuntu
+
+    `# apt-get install git`
+
+    For Ubuntu, this PPA provides the latest stable upstream Git version
+
+    ```bash
+    # add-apt-repository ppa:git-core/ppa
+    # apt update; apt install git
+    ```
+
+    **Fedora**
+
+    `# yum install git` (up to Fedora 21)
+
+    `# dnf install git` (Fedora 22 and later)
+
+    **Gentoo**
+
+    `# emerge --ask --verbose dev-vcs/git`
+
+    **Arch Linux**
+
+    `# pacman -S git`
+
+    **openSUSE**
+
+    `# zypper install git`
+
+    **Mageia**
+
+    `# urpmi git`
+
+    **Nix/NixOS**
+
+    `# nix-env -i git`
+
+    **FreeBSD**
+
+    `# pkg install git`
+
+    **Solaris 9/10/11 (OpenCSW)**
+
+    `# pkgutil -i git`
+
+    **Solaris 11 Express, OpenIndiana**
+
+    `# pkg install developer/versioning/git`
+
+    **OpenBSD**
+
+    `# pkg_add git`
+
+    **Alpine**
+
+    `$ apk add git`
+
+    **Red Hat Enterprise Linux, Oracle Linux, CentOS, Scientific Linux, et al.**
+
+    RHEL and derivatives typically ship older versions of git. You can [download a tarball](https://www.kernel.org/pub/software/scm/git/) and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
+
+    **Slitaz**
+
+    `$ tazpkg get-install git`
+
+  </TabItem>
+</Tabs>
+````

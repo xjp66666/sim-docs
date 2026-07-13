@@ -25,6 +25,7 @@ const FeatureList = [
   {
     title: 'Git',
     Svg: require('@site/static/img/git.svg').default,
+    link: 'https://xjp66666.github.io/sim-docs/docs/get-ready/version-control',
     description: (
       <>
         <b>Git</b> is the version control system used to manage the team's codebase, enabling collaborative development without conflicting changes.
