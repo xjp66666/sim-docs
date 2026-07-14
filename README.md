@@ -1,3 +1,5 @@
+Sim-Docs is built using [Docusaurus](https://docusaurus.io/) template.
+
 # How To Contribute
 
 install [node.js](https://nodejs.org/)
@@ -76,3 +78,7 @@ To customize the CSS of this website, edit `src/css/custom.css`:
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 ```
+
+## Home Page Customization
+
+Edit `js` and `css` files under `src` to customize the homepage.
