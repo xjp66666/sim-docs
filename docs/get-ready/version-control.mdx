@@ -116,4 +116,75 @@ Version control tracks changes to files over time, so you can see what changed, 
 
   </TabItem>
 </Tabs>
-````
+
+## Configuring
+
+1. Open a [terminal](./VSCode-Configuration#terminal) in VSCode
+2. Set a Git username:
+
+```bash
+git config --global user.name "FIRST_NAME LAST_NAME"
+```
+
+3. Confirm that you have set the Git username correctly:
+
+```bash
+$ git config --global user.name
+> FIRST_NAME LAST_NAME
+```
+
+4. Set a commit email:
+
+```bash
+git config --global user.email "YOUR_EMAIL"
+```
+
+5. Confirm that you have set the email address correctly in Git:
+
+```bash
+$ git config --global user.email
+email@example.com
+```
+
+## Making a GitHub Account
+
+GitHub is a website where developers can store and share projects that use Git. It allows multiple people to work on the same codebase, review each other’s changes, track problems, and
+keep an online copy of their work. Git runs on your computer, while GitHub hosts your Git repositories online.
+
+<a href="https://github.com" target="_blank" rel="noopener noreferrer">
+  Official GitHub Page
+</a>
+
+Click on `Sign up for GitHub` to make a new account. It does not matter wether you use your personal account or school account, since GitHub allows multiple emails to be connected to one GitHub account. Be aware that if you are using school account, you have to sign up through Google, and **you are not going to have access to your account after you graduate.**
+
+Then, ask one of our programming mentors to add you to `Simbotics` organization. After that you will be able to access to our GitHub repos.
+
+## Authenticating with GitHub from Git
+
+1. In VS Code, click the Accounts icon in the bottom-left corner.
+
+2. Select Sign in with GitHub and approve the request in your browser.
+
+3. Make a new folder for testing out Git
+
+4. Make a new repo on GitHub: [Click me to make a repo](https://github.com/new)
+
+5. Give your repo a name, then click `Create Repository`.
+
+6. Copy the commands under `…or create a new repository on the command line`:
+
+![this is an image](./img/new-repo.png)
+
+7. Go back to VSCode and open the folder you just created. Open a terminal and paste the commands you copied. Press `Enter`.
+
+8. Run the command below to check if Git is connected to the repo:
+
+```bash
+git remote -v
+```
+
+You should see results like below:
+
+![this is an image](./img/check-repo.png)
+
+## Version Control
