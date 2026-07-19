@@ -187,4 +187,152 @@ You should see results like below:
 
 ![this is an image](./img/check-repo.png)
 
-## Version Control
+## Trying Version Control
+
+Now we will use the `DEMO` repository you just created to see how Git saves changes and separates work into branches.
+
+### Making Your First Commit
+
+In the VS Code Explorer, create a new file named `demo.txt`. Add this line to the file and save it:
+
+```text
+This file is on the main branch.
+```
+
+Open the terminal and run:
+
+```bash
+git add demo.txt
+git commit -m "Add demo text file"
+git push
+```
+
+`git add` selects the file, `git commit` saves a checkpoint, and `git push` sends that checkpoint to GitHub.
+
+{/* Image suggestion: VS Code showing demo.txt and the successful commit in the terminal. */}
+
+### Making the First Branch
+
+A branch is a separate version of the repository. Create and switch to a branch named `first-change`:
+
+```bash
+git switch -c first-change
+```
+
+The branch name in the bottom-left corner of VS Code should change from `main` to `first-change`.
+
+Change `demo.txt` to:
+
+```text
+This file was changed on the first branch.
+```
+
+Save and commit the change:
+
+```bash
+git add demo.txt
+git commit -m "Change text on first branch"
+```
+
+{/* Image suggestion: demo.txt open beside the bottom-left first-change branch label. */}
+
+### Switching Back to Main
+
+Switch back to the main branch:
+
+```bash
+git switch main
+```
+
+Open `demo.txt` again. It should say:
+
+```text
+This file is on the main branch.
+```
+
+Your change did not disappear. It is saved on `first-change`, while `main` still has the original file. Switch between them to compare:
+
+```bash
+git switch first-change
+git switch main
+```
+
+Watch the text in `demo.txt` change when you switch branches.
+
+### Making a Second Branch
+
+While on `main`, create another branch:
+
+```bash
+git switch -c second-change
+```
+
+Create a new file named `second.txt` and add:
+
+```text
+This file only exists on the second branch.
+```
+
+Save and commit it:
+
+```bash
+git add second.txt
+git commit -m "Add file on second branch"
+```
+
+You now have three different versions of the repository:
+
+- `main` has the original `demo.txt`.
+- `first-change` has the changed `demo.txt`.
+- `second-change` has the original `demo.txt` and the new `second.txt`.
+
+Use these commands to switch between them:
+
+```bash
+git switch main
+git switch first-change
+git switch second-change
+```
+
+Notice how the files change depending on which branch you are using. This allows different programmers to work on different changes without affecting each other.
+
+{/* Image suggestion: VS Code Explorer shown once on each branch to compare the files. */}
+
+### Sending the Branches to GitHub
+
+Push both new branches so they also appear on GitHub:
+
+```bash
+git switch first-change
+git push -u origin first-change
+
+git switch second-change
+git push -u origin second-change
+```
+
+Open the repository on GitHub and use the branch dropdown to switch between `main`, `first-change`, and `second-change`.
+
+{/* Image suggestion: GitHub branch dropdown showing all three branches. */}
+
+## Git Command Cheat Sheet
+
+| Command | What it does |
+| --- | --- |
+| `git status` | Shows your current branch and changed files. |
+| `git add FILE_NAME` | Selects a file for your next commit. |
+| `git add .` | Selects all changed files for your next commit. |
+| `git commit -m "MESSAGE"` | Saves a checkpoint with a short description. |
+| `git push` | Sends your commits to GitHub. |
+| `git pull` | Downloads the latest changes from GitHub. |
+| `git branch` | Lists all branches on your computer. |
+| `git switch BRANCH_NAME` | Switches to an existing branch. |
+| `git switch -c BRANCH_NAME` | Creates a new branch and switches to it. |
+| `git remote -v` | Shows which GitHub repository is connected. |
+
+Replace `FILE_NAME`, `MESSAGE`, and `BRANCH_NAME` with your own information. For example:
+
+```bash
+git add demo.txt
+git commit -m "Update demo file"
+git switch first-change
+```

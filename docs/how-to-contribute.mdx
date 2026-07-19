@@ -2,87 +2,148 @@
 sidebar_position: 1
 ---
 
-Sim-Docs is built using [Docusaurus](https://docusaurus.io/) template.
+# How to Contribute
 
-# How To Contribute
+Sim-Docs is built with [Docusaurus](https://docusaurus.io/). You can help by fixing mistakes, improving explanations, or adding new pages.
 
-install [node.js](https://nodejs.org/)
+## Getting Started
 
-Copy the repository of Sim-Docs using:
+### 1. Install Node.js
+
+Download and install [Node.js](https://nodejs.org/) if it is not already on your computer.
+
+To check whether it is installed, run:
+
+```bash
+node --version
+npm --version
+```
+
+### 2. Download Sim-Docs
+
+Clone the repository using HTTPS:
 
 ```bash
 git clone https://github.com/xjp66666/sim-docs.git
 ```
 
-or through SSH:
+If you have set up an SSH key, you can use SSH instead:
 
 ```bash
 git clone git@github.com:xjp66666/sim-docs.git
 ```
 
-under the root directory, install dependencies:
+### 3. Install the Dependencies
+
+Open the downloaded `sim-docs` folder in VS Code. In the terminal, run:
 
 ```bash
 npm install
 ```
 
-run live server locally:
+You only need to do this the first time you set up the website, or when its dependencies change.
+
+### 4. Start the Website
+
+Run the local development server:
 
 ```bash
 npm run start
 ```
 
-## Markdown
+The website will open in your browser. Saved changes normally appear automatically.
 
-Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. All the doc pages are placed under `docs` folder. The doc pages should be written in [Markdown](https://en.wikipedia.org/wiki/Markdown) format. [Click here to view basic syntax](https://www.markdownguide.org/basic-syntax/)
+:::tip
+Keep the development server running while you edit. Press `Ctrl+C` in the terminal when you want to stop it.
+:::
 
-Here is a minimal cheat sheet for you to look up when editing doc pages:
+## Editing Documentation
 
-| What is written                                                                                                  | What it looks like                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Text                                                                                                             | Text                                                                                                          |
-| \# Heading level 1                                                                                               | <h1>Heading level 1</h1>                                                                                      |
-| \## Heading level 2                                                                                              | <h2>Heading level 2</h2>                                                                                      |
-| \### Heading level 3                                                                                             | <h3>Heading level 3</h3>                                                                                      |
-| \#### Heading level 4                                                                                            | <h4>Heading level 4</h4>                                                                                      |
-| \_Italic\_                                                                                                       | _Italic_                                                                                                      |
-| \*\*Bold\*\*                                                                                                     | **Bold**                                                                                                      |
-| \[Text]\(https://xjp66666.github.io/sim-docs)                                                                    | [Text](https://xjp66666.github.io/sim-docs/)                                                                  |
-| \`code\`                                                                                                         | `code`                                                                                                        |
-| \!\[alt text for the image]\(https://cdn.wikioasis.org/italianbrainrotwiki/thumb/9/90/6%277.png/599px-6%277.png) | ![alt text for the image](https://cdn.wikioasis.org/italianbrainrotwiki/thumb/9/90/6%277.png/599px-6%277.png) |
+Documentation pages are `.md` or `.mdx` files inside the `docs` folder. Find the page you want to change, edit it, and save the file.
 
-For more styling and html stuff, check [this](https://docusaurus.io/docs/category/guides).
+A page normally begins with front matter followed by its title:
 
-## CSS Customization
+```mdx
+---
+sidebar_position: 1
+---
 
-To customize the CSS of this website, edit `src/css/custom.css`:
+# Page Title
 
-```css
-:root {
-  --ifm-color-primary: #c8102e; // main brand color
-  --ifm-color-primary-dark: #b40e29;
-  --ifm-color-primary-darker: #a90d27;
-  --ifm-color-primary-darkest: #8b0a20;
-  --ifm-color-primary-light: #dc1233;
-  --ifm-color-primary-lighter: #e01d3d;
-  --ifm-color-primary-lightest: #e4485f;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
-
-
-[data-theme="dark"] {      //dark mode color
-  --ifm-color-primary: #c8102e;
-  --ifm-color-primary-dark: #ff3648;
-  --ifm-color-primary-darker: #ff2a3d;
-  --ifm-color-primary-darkest: #f5081d;
-  --ifm-color-primary-light: #ff6474;
-  --ifm-color-primary-lighter: #ff7080;
-  --ifm-color-primary-lightest: #ff97a2;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
+Your explanation starts here.
 ```
 
-## Home Page Customization
+`sidebar_position` controls where the page appears in its sidebar category.
 
-Edit `js` and `css` files under `src` to customize the homepage.
+## Markdown Cheat Sheet
+
+Markdown adds formatting using a few simple symbols.
+
+| Write this | Result |
+| --- | --- |
+| `# Main heading` | A main page heading |
+| `## Section heading` | A section heading |
+| `### Smaller heading` | A smaller heading |
+| `**bold text**` | **bold text** |
+| `_italic text_` | _italic text_ |
+| `` `code` `` | `code` |
+| `[Link text](https://example.com)` | [Link text](https://example.com) |
+| `![Description](./img/example.png)` | An image |
+| `- List item` | A bullet-point item |
+| `1. Step` | A numbered step |
+
+Use fenced code blocks for commands or longer code examples:
+
+````md
+```bash
+npm run start
+```
+````
+
+See the [Markdown basic syntax guide](https://www.markdownguide.org/basic-syntax/) for more examples.
+
+## Adding Images
+
+Place images for a documentation category inside its `img` folder. For example:
+
+```text
+docs/
+└── get-ready/
+    ├── img/
+    │   └── example.png
+    └── example-page.mdx
+```
+
+Use a relative path to show the image on the page:
+
+```md
+![A useful description of the image](./img/example.png)
+```
+
+Give every image a short, useful description. This helps readers who use screen readers and explains the image if it does not load.
+
+## Before Submitting Your Changes
+
+Check the page in your browser and make sure:
+
+- The instructions are easy to follow.
+- Headings appear in the correct order.
+- Links and images work.
+- Commands and filenames are formatted as code.
+- There are no obvious spelling mistakes.
+
+Then create a branch, commit your work, push it to GitHub, and open a pull request. See the [Version Control guide](./get-ready/version-control) if you need help.
+
+## Advanced Customization
+
+Most contributors only need to edit files in `docs`. The following areas change the website itself.
+
+### Website Colours and Styles
+
+Edit `src/css/custom.css` to change shared colours and styles. The main light-theme colours are stored under `:root`, while dark-theme colours are stored under `[data-theme="dark"]`.
+
+### Home Page
+
+The home page is built from JavaScript and CSS files inside `src/pages` and `src/components`. Check the page locally after making changes because these files affect the website's layout and behaviour.
+
+For more advanced options, see the [Docusaurus guides](https://docusaurus.io/docs/category/guides).
