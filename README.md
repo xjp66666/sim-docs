@@ -1,84 +1,30 @@
-Sim-Docs is built using [Docusaurus](https://docusaurus.io/) template.
+# Sim-Docs
 
-# How To Contribute
+Sim-Docs is a beginner-friendly guide to FRC programming, built with
+[Docusaurus](https://docusaurus.io/).
 
-install [node.js](https://nodejs.org/)
+Read the documentation at
+[xjp66666.github.io/sim-docs](https://xjp66666.github.io/sim-docs/).
 
-Copy the repository of Sim-Docs using:
+## Run Locally
+
+You will need [Node.js](https://nodejs.org/) installed.
 
 ```bash
 git clone https://github.com/xjp66666/sim-docs.git
-```
-
-or through SSH:
-
-```bash
-git clone git@github.com:xjp66666/sim-docs.git
-```
-
-under the root directory, install dependencies:
-
-```bash
+cd sim-docs
 npm install
-```
-
-run live server locally:
-
-```bash
 npm run start
 ```
 
-## Markdown
+The development server opens the site in your browser and updates it as you
+edit.
 
-Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. All the doc pages are placed under `docs` folder. The doc pages should be written in [Markdown](https://en.wikipedia.org/wiki/Markdown) format. [Click here to view basic syntax](https://www.markdownguide.org/basic-syntax/)
+## Contributing
 
-Here is a minimal cheat sheet for you to look up when editing doc pages:
+Contributions are welcome. You can help by correcting mistakes, improving
+explanations, or adding new documentation.
 
-| What is written                                                                                                  | What it looks like                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Text                                                                                                             | Text                                                                                                          |
-| \# Heading level 1                                                                                               | <h1>Heading level 1</h1>                                                                                      |
-| \## Heading level 2                                                                                              | <h2>Heading level 2</h2>                                                                                      |
-| \### Heading level 3                                                                                             | <h3>Heading level 3</h3>                                                                                      |
-| \#### Heading level 4                                                                                            | <h4>Heading level 4</h4>                                                                                      |
-| \_Italic\_                                                                                                       | _Italic_                                                                                                      |
-| \*\*Bold\*\*                                                                                                     | **Bold**                                                                                                      |
-| \[Text]\(https://xjp66666.github.io/sim-docs)                                                                    | [Text](https://xjp66666.github.io/sim-docs/)                                                                  |
-| \`code\`                                                                                                         | `code`                                                                                                        |
-| \!\[alt text for the image]\(https://cdn.wikioasis.org/italianbrainrotwiki/thumb/9/90/6%277.png/599px-6%277.png) | ![alt text for the image](https://cdn.wikioasis.org/italianbrainrotwiki/thumb/9/90/6%277.png/599px-6%277.png) |
+See the [How to Contribute guide](./docs/how-to-contribute.mdx) if you want to contribute to this project. Alternatively, click `Edit this page` at the bottom of every page to edit directly from GitHub
 
-For more styling and html stuff, check [this](https://docusaurus.io/docs/category/guides).
-
-## CSS customization
-
-To customize the CSS of this website, edit `src/css/custom.css`:
-
-```css
-:root {
-  --ifm-color-primary: #c8102e; // main brand color
-  --ifm-color-primary-dark: #b40e29;
-  --ifm-color-primary-darker: #a90d27;
-  --ifm-color-primary-darkest: #8b0a20;
-  --ifm-color-primary-light: #dc1233;
-  --ifm-color-primary-lighter: #e01d3d;
-  --ifm-color-primary-lightest: #e4485f;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
-
-
-[data-theme="dark"] {      //dark mode color
-  --ifm-color-primary: #c8102e;
-  --ifm-color-primary-dark: #ff3648;
-  --ifm-color-primary-darker: #ff2a3d;
-  --ifm-color-primary-darkest: #f5081d;
-  --ifm-color-primary-light: #ff6474;
-  --ifm-color-primary-lighter: #ff7080;
-  --ifm-color-primary-lightest: #ff97a2;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
-```
-
-## Home Page Customization
-
-Edit `js` and `css` files under `src` to customize the homepage.
+Most documentation is stored in the [`docs`](./docs) directory as MDX files.
