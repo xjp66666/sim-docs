@@ -12,7 +12,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Sim Docs',
   tagline: 'teach you frc programming like youre 5 yrs old',
-  favicon: 'img/favicon.ico',
+  // Keep the version query in sync when replacing the favicon. Browsers cache
+  // favicons aggressively, so changing the URL ensures updates appear promptly.
+  favicon: 'img/favicon.ico?v=20260727',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
