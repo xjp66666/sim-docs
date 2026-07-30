@@ -1,0 +1,125 @@
+---
+sidebar_position: 1
+---
+
+# Code Structure
+
+Open a new FRC VS Code window, create a new project (`ctrl+shift+p`, then select `WPILib: Create a new project`) and follow the instructions below:
+
+```text
+select a project type: template
+select a language: Java
+select a project base: Command Robot
+
+base folder: use a proper folder
+project name: give it a proper name
+
+team number: 1114(your team number)
+```
+
+After WPILib generates the project, you will see the structure of the robot code is shown on file explorer:
+
+![WPILib project shown in the VS Code File Explorer](./img/project-tree.png)
+
+Here is the full view:
+
+```text
+project-name/
+├── .gradle/
+├── .vscode/
+├── .wpilib/
+├── build/
+├── gradle/
+├── src/
+│   └── main/
+│       ├── deploy/
+│       └── java/
+│           └── frc/
+│               └── robot/
+│                   ├── Main.java
+│                   ├── Robot.java
+│                   ├── RobotContainer.java
+│                   ├── Constants.java
+│                   ├── commands/
+│                   └── subsystems/
+├── vendordeps/
+├── .gitignore
+├── build.gradle
+├── gradlew
+├── gradlew.bat
+├── settings.gradle
+└── WPILib-License.md
+```
+
+It looks a little bit complicated, but for now we only care about files under `src/main/java/frc/robot`, which contains `Main.java`, `Robot.java`, `RobotContainer.java`, `Constants.java` and `commands.java`. Let's talk about them separately.
+
+## Main.java
+
+This is the entrypoint of your robot code. `Robot::new` represents a constructor reference, which works the same way as:
+
+```java
+RobotBase.startRobot(() -> new Robot());
+```
+
+:::warning[`Main.java`]
+Generally, you DON'T have to touch `Main.java`.
+:::
+
+## Robot.java
+
+This is the place where you program what you want the robot to do during different periods, and where [robot container](#RobotContainer.java) should be constructed.
+
+For example, since this is a [command-based](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html) robot, it has to detect if a command has been scheduled throughout a match, therefore we run the Scheduler periodically (every 20 ms):
+
+```java
+@Override
+  public void robotPeriodic() {
+    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
+    // commands, running already-scheduled commands, removing finished or interrupted commands,
+    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // block in order for anything in the Command-based framework to work.
+    CommandScheduler.getInstance().run();
+  }
+```
+
+And in autonomous period the robot will run the scheduled command sets according to the driver's choice:
+
+```Java
+@Override
+  public void autonomousInit() {
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      CommandScheduler.getInstance().schedule(m_autonomousCommand);
+    }
+  }
+```
+
+## RobotContainer.java
+
+The main structure of the robot, including subsystems, commands, and trigger mappings should all be declared here:
+
+```java
+private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+
+...
+
+private void configureBindings() {
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    new Trigger(m_exampleSubsystem::exampleCondition)
+        .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // cancelling on release.
+    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+}
+```
+
+:::tip[`onTrue` and `whileTrue`]
+Be aware that when using `onTrue`, once the condition change from `false` to `true`, the command will be scheduled immediately, and you CAN'T cancel it by releasing the button. But for `whileTrue`, the command will be constantly re-scheduled until you release the button.
+:::
+
+## Constants
+
+If you forget what a constant is, check [here](../java-basics/variables-and-types#Variables-vs-Constants)
