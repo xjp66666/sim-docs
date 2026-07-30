@@ -1,0 +1,137 @@
+---
+sidebar_position: 5
+---
+
+# Classes and Objects
+
+Classes and objects help us keep related information and methods together.
+
+## Classes Are Blueprints
+
+A **class** is like a blueprint. A blueprint describes how to build something, but it is not the finished object.
+
+Here is a class that describes a simple robot motor:
+
+```java
+public class RobotMotor {
+  private double speed;
+
+  public void setSpeed(double newSpeed) {
+    speed = newSpeed;
+  }
+
+  public void stop() {
+    speed = 0.0;
+  }
+}
+```
+
+This class has:
+
+- A variable named `speed` that remembers the motor's speed.
+- A method named `setSpeed` that changes the speed.
+- A method named `stop` that sets the speed to zero.
+
+A variable inside a class is called a **field**. Fields store information about an object.
+
+## Objects
+
+An **object** is something created from a class. If a class is a blueprint for a house, an object is a house built from that blueprint.
+
+We use `new` to create an object:
+
+```java
+RobotMotor intakeMotor = new RobotMotor();
+```
+
+- `RobotMotor` is the type of object.
+- `intakeMotor` is the name we give the object.
+- `new RobotMotor()` creates it.
+
+We use a dot (`.`) to call one of the object's methods:
+
+```java
+intakeMotor.setSpeed(0.6);
+intakeMotor.stop();
+```
+
+We can create more than one object from the same class:
+
+```java
+RobotMotor leftMotor = new RobotMotor();
+RobotMotor rightMotor = new RobotMotor();
+
+leftMotor.setSpeed(0.5);
+rightMotor.setSpeed(-0.5);
+```
+
+The two motors are separate objects, so each one can have a different speed.
+
+## Constructors
+
+A **constructor** sets up an object when it is created. It has the same name as its class.
+
+```java
+public class RobotMotor {
+  private int deviceId;
+  private double speed;
+
+  public RobotMotor(int newDeviceId) {
+    deviceId = newDeviceId;
+    speed = 0.0;
+  }
+
+  public void setSpeed(double newSpeed) {
+    speed = newSpeed;
+  }
+}
+```
+
+The constructor needs a device ID, so we provide one when we create each motor:
+
+```java
+RobotMotor intakeMotor = new RobotMotor(10);
+RobotMotor feederMotor = new RobotMotor(11);
+```
+
+The constructor does not use `void` or another return type.
+
+## Public and Private
+
+`public` and `private` control where something can be used:
+
+- `public` means other classes can use it.
+- `private` means only its own class can use it.
+
+Fields are usually private. Public methods give other code a safe way to use the object:
+
+```java
+public class RobotMotor {
+  private double speed;
+
+  public void setSpeed(double newSpeed) {
+    speed = newSpeed;
+  }
+
+  public double getSpeed() {
+    return speed;
+  }
+}
+```
+
+Other code can call `getSpeed()` to read the private field:
+
+```java
+RobotMotor motor = new RobotMotor();
+motor.setSpeed(0.5);
+
+System.out.println(motor.getSpeed());
+```
+
+:::tip
+For now, make fields `private` and make the methods that other code needs `public`.
+:::
+
+---
+
+A class is a blueprint, and an object is something created from that blueprint. Next, we will learn how to organize groups of values.

@@ -1,0 +1,137 @@
+---
+sidebar_position: 4
+---
+
+# Methods
+
+A **method** is a named group of instructions. It lets us reuse code instead of copying and pasting it.
+
+You have already used a method:
+
+```java
+System.out.println("Hello!");
+```
+
+`println` is the method's name. It prints a message in the terminal.
+
+## Creating a Method
+
+This method prints a greeting:
+
+```java
+public static void sayHello() {
+  System.out.println("Hello!");
+}
+```
+
+The code does not run until we **call** the method:
+
+```java
+sayHello();
+```
+
+Here is a complete program:
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    sayHello();
+    sayHello();
+  }
+
+  public static void sayHello() {
+    System.out.println("Hello!");
+  }
+}
+```
+
+The program calls `sayHello()` twice, so it prints `"Hello!"` twice.
+
+### Parts of a Method
+
+Look at the first line again:
+
+```java
+public static void sayHello() {
+```
+
+- `public static` lets us call the method from `main`.
+- `void` means the method does not give a value back.
+- `sayHello` is the method's name.
+- `()` holds any information that the method needs.
+- `{}` contains the instructions that the method runs.
+
+Method names usually start with a lowercase letter. If the name has multiple words, capitalize each new word: `runIntake`, `stopMotor`, or `getSpeed`.
+
+## Giving Information to a Method
+
+We can give a method information when we call it:
+
+```java
+public static void greet(String name) {
+  System.out.println("Hello, " + name + "!");
+}
+```
+
+`String name` is a **parameter**. It is a variable that the method can use.
+
+When we call the method, we put a value inside the parentheses:
+
+```java
+greet("Alex");
+greet("Sam");
+```
+
+The output is:
+
+```text
+Hello, Alex!
+Hello, Sam!
+```
+
+A method can receive more than one value:
+
+```java
+public static void printScore(String teamName, int score) {
+  System.out.println(teamName + ": " + score);
+}
+
+printScore("Simbotics", 667);
+```
+
+The values must be in the same order as the parameters.
+
+## Returning a Value
+
+Some methods calculate an answer and give it back to us. Use the answer's data type instead of `void`, then use `return`:
+
+```java
+public static int add(int firstNumber, int secondNumber) {
+  return firstNumber + secondNumber;
+}
+```
+
+We can save or print the returned answer:
+
+```java
+int answer = add(4, 7);
+System.out.println(answer);
+```
+
+Methods can return other data types too:
+
+```java
+public static boolean isPositive(double number) {
+  return number > 0;
+}
+```
+
+This method returns `true` when the number is positive and `false` when it is not.
+
+:::tip[Printing and returning are different]
+`System.out.println()` shows a value in the terminal. `return` sends a value back to the code that called the method.
+:::
+
+---
+
+Methods help us organize code into small, reusable actions. Next, we will learn how classes and objects group actions with the information they use.

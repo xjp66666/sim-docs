@@ -1,0 +1,104 @@
+---
+sidebar_position: 2
+---
+
+# Variables and Data Types
+
+**Data** is information that a program stores and uses. In an FRC robot program, data can include a motor's speed, a sensor reading, whether a button is pressed, or a message shown to the driver.
+
+Java has different **data types** for different kinds of information. For example, `int` stores a whole number, while `boolean` stores either `true` or `false`.
+
+## Data Types
+
+### int
+
+`int` is used to store whole numbers like `1` `2`, `3`, `67`; eg:
+
+```java
+int year = 2026;
+
+int price = 123;
+
+int motorSpeed = 6000;
+```
+
+### double
+
+`double` is used to store a decimal number, like `-0.5`, `114.514`, `6.7`; eg:
+
+```java
+double PI = 3.14;
+
+double currency = 0.71;
+```
+
+### boolean
+
+`boolean` type stores only `true` and `false`, which denotes `1` and `0` at low level computing.
+
+```java
+
+boolean isRobotOn = true;
+
+boolean iLikeCarrots = false;
+```
+
+### String
+
+`String` is used to store a bunch of characters. For FRC programming we basically use it to log & print data onto drive's dash board. The [hello world](./hello-world) code you just ran is a simple example of printing a string.
+
+```java
+System.out.print("I love programming!")
+System.out.println("I was lying") //println means starting a new line
+```
+
+And the output will be:
+
+```bash
+I love programming!
+I was lying
+```
+
+### Basic Math Operators
+
+Operators are symbols that perform calculations or assign values.
+
+| Operator | Explanation                          | Example                    |
+| -------- | ------------------------------------ | -------------------------- |
+| `+`      | Adds two values                      | `total = 5 + 3;`           |
+| `-`      | Subtracts one value from another     | `remaining = 10 - 4;`      |
+| `*`      | Multiplies two values                | `distance = speed * time;` |
+| `/`      | Divides one value by another         | `average = total / count;` |
+| `%`      | Returns the remainder after division | `remainder = 10 % 3;`      |
+| `=`      | Assigns a value to a variable        | `motorSpeed = 0.5;`        |
+| `+=`     | Adds a value to a variable           | `score += 2;`              |
+| `-=`     | Subtracts a value from a variable    | `speed -= 0.1;`            |
+| `++`     | Increases a value by one             | `count++;`                 |
+| `--`     | Decreases a value by one             | `count--;`                 |
+
+## Variables vs Constants
+
+A **variable** is a named place where data is stored. Its value can change while the program is running.
+
+```java
+int myAge = 16;
+myAge = 17; //I turned 17
+
+int motorSpeed = 0;
+motorSpeed = 6000; //set motor speed to 6000
+```
+
+Here, `motorSpeed` starts at `0` and then changes to `6000`.
+
+A **constant** also stores data, but its value cannot change after it is assigned. In Java, constants use the `final` keyword. Their names are usually written in uppercase with underscores between words.
+
+```java
+final float PI = 3.14;
+final int CONTROLLER_PORT = 0;
+```
+
+Java compiler will yell at you if you try to change the value `PI` or `CONTROLLER_PORT`, since these two are described as `final`, which means they will never change.
+
+---
+
+Now you've learned basic data types in java, and we are going to talk about conditions and loops next.

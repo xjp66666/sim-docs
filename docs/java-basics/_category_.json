@@ -1,0 +1,8 @@
+{
+  "label": "Java Basics",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The Java basics you need to start programming an FRC robot. If you already have some programming experience, please jump right into FRC Programming section"
+  }
+}

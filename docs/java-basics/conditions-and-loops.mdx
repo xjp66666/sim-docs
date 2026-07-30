@@ -1,0 +1,295 @@
+---
+sidebar_position: 3
+---
+
+# Conditions and Loops
+
+Conditions let a program make decisions, while loops let it repeat actions. Together, they allow your code to react to driver input, sensor readings, and changing robot states.
+
+## Conditions
+
+If you have used an `if-else` block in Scratch or another block-based language, Java's version works in basically the same way:
+
+```java
+if (condition) {
+  // Run this code when the condition is true
+} else if (anotherCondition) {
+  // Run this code when the first condition is false
+  // and this condition is true
+} else {
+  // Run this code when none of the conditions above are true
+}
+```
+
+The condition inside the parentheses must evaluate to a `boolean`: either `true` or `false`. An `if` statement is required, but the `else if` and `else` sections are optional. You can also use more than one `else if`.
+
+Notice that `if` and `else if` each need a condition. `else` does not need one because it handles everything that did not match an earlier condition.
+
+### Example: Checking a Grade
+
+Create a new Java file and try the example below. Replace `87.5` with your own mark.
+
+```java
+double grade = 87.5;
+
+if (grade < 0 || grade > 100) {
+  System.out.println("Invalid number.");
+} else if (grade >= 90) {
+  System.out.println("You did an excellent job!");
+} else if (grade >= 75) {
+  System.out.println("You are really smart.");
+} else {
+  System.out.println("Keep working hard!");
+}
+```
+
+Only the first matching branch runs. This is why the invalid range is checked first and the remaining checks go from highest grade to lowest grade.
+
+For example, a grade of `95` satisfies both `grade >= 90` and `grade >= 75`, but Java prints only `"You did an excellent job!"` because that is the first matching branch.
+
+### Conditional Operators
+
+Comparison and logical operators let you build conditions from values:
+
+| Operator                  | Explanation                                            | Example                                   |
+| ------------------------- | ------------------------------------------------------ | ----------------------------------------- |
+| `==`                      | Checks whether two values are equal                    | `speed == 0`                              |
+| `!=`                      | Checks whether two values are not equal                | `speed != 0`                              |
+| `>`                       | Checks whether the left value is greater               | `temperature > 80`                        |
+| `<`                       | Checks whether the left value is smaller               | `distance < 1.5`                          |
+| `>=`                      | Checks whether the left value is greater than or equal | `grade >= 90`                             |
+| `<=`                      | Checks whether the left value is smaller than or equal | `speed <= 1.0`                            |
+| `&&`                      | Is `true` when both conditions are true                | `grade >= 0 && grade <= 100`              |
+| <code>&#124;&#124;</code> | Is `true` when at least one condition is true          | <code>buttonA &#124;&#124; buttonB</code> |
+| `!`                       | Reverses a condition                                   | `!isRobotOn`                              |
+
+:::tip[Assignment vs. comparison]
+Use one equals sign (`=`) to assign a value and two equals signs (`==`) to compare values.
+
+```java
+int speed = 5;          // Assigns 5 to speed
+boolean stopped = speed == 0; // Checks whether speed equals 0
+```
+
+:::
+
+You can also use a `boolean` variable directly as a condition:
+
+```java
+boolean hasGamePiece = true;
+
+if (hasGamePiece) {
+  System.out.println("Ready to score!");
+}
+
+if (!hasGamePiece) {
+  System.out.println("Run the intake.");
+}
+```
+
+## Loops
+
+Suppose you want to print every number from 1 to 100. You could write 100 print statements, but copying and editing nearly identical code is slow and creates opportunities for mistakes.
+
+A loop performs the repeated work for you.
+
+### For Loops
+
+A `for` loop is useful when you know how many times the code should repeat.
+
+```java
+for (int i = 1; i <= 100; i++) {
+  System.out.println(i);
+}
+```
+
+The loop header has three parts:
+
+```java
+for (startingValue; condition; update) {
+  // Code to repeat
+}
+```
+
+In the number example:
+
+- `int i = 1` creates a counter named `i` and starts it at `1`.
+- `i <= 100` keeps the loop running while `i` is less than or equal to `100`.
+- `i++` increases `i` by one after each repetition.
+
+Three lines instead of 100. Beautiful.
+
+The counter can start at a different value or change by a different amount. This loop prints the even numbers from 2 to 10:
+
+```java
+for (int number = 2; number <= 10; number += 2) {
+  System.out.println(number);
+}
+```
+
+### Enhanced For Loops
+
+An **enhanced for loop**, sometimes called a `for-each` loop, visits every item in an array or collection. Use it when you need each value but do not need its position.
+
+```java
+String[] motorNames = {"frontLeft", "frontRight", "backLeft", "backRight"};
+
+for (String motorName : motorNames) {
+  System.out.println(motorName);
+}
+```
+
+On each repetition, `motorName` contains the next item in `motorNames`. You will learn more about arrays and collections in a later lesson.
+
+### While Loops
+
+A `while` loop repeats code for as long as its condition is `true`. It is useful when you do not know exactly how many times the code needs to repeat.
+
+```java
+int number = 1;
+
+while (number <= 100) {
+  System.out.println(number);
+  number++;
+}
+```
+
+The condition is checked **before** every repetition. The `number++` line eventually makes the condition false and stops the loop.
+
+:::warning[Infinite loops]
+If a loop's condition never becomes `false`, the loop runs forever.
+
+```java
+int number = 1;
+
+while (number <= 100) {
+  System.out.println(number);
+  // number never changes!
+}
+```
+
+Be especially careful with `while` loops in FRC robot code. A long or infinite loop can prevent the rest of the robot program from running. WPILib already calls the robot's periodic methods repeatedly, so an `if` statement is usually the right choice inside those methods.
+:::
+
+### Do-While Loops
+
+A `do-while` loop is similar to a `while` loop, but it checks its condition **after** running the code. This means its body always runs at least once.
+
+```java
+int countdown = 3;
+
+do {
+  System.out.println(countdown);
+  countdown--;
+} while (countdown > 0);
+
+System.out.println("Go!");
+```
+
+`do-while` loops are less common, but they are helpful when an action must happen once before the program can decide whether to repeat it.
+
+### Break and Continue
+
+The `break` keyword exits a loop immediately:
+
+```java
+for (int number = 1; number <= 10; number++) {
+  if (number == 5) {
+    break;
+  }
+
+  System.out.println(number);
+}
+```
+
+This prints `1` through `4`. When `number` becomes `5`, the loop ends.
+
+The `continue` keyword skips the rest of the current repetition and moves to the next one:
+
+```java
+for (int number = 1; number <= 10; number++) {
+  if (number % 2 != 0) {
+    continue;
+  }
+
+  System.out.println(number);
+}
+```
+
+This prints only the even numbers. The `%` operator returns the remainder after division, so an odd number has a remainder that is not `0` when divided by `2`.
+
+## FRC Connection
+
+Conditions appear constantly in robot code. For example, a robot might run its intake only while the driver holds a button:
+
+```java
+if (controller.getAButton()) {
+  intakeMotor.set(0.6);
+} else {
+  intakeMotor.set(0.0);
+}
+```
+
+WPILib checks code like this many times per second from a periodic method or command. You do not need to wrap it in your own `while` loop.
+
+You can combine conditions when an action has more than one requirement:
+
+```java
+boolean driverWantsToShoot = controller.getBButton();
+boolean shooterAtSpeed = shooterSpeed >= targetSpeed;
+
+if (driverWantsToShoot && shooterAtSpeed) {
+  feederMotor.set(0.8);
+} else {
+  feederMotor.set(0.0);
+}
+```
+
+Here, the feeder runs only when the driver presses the button **and** the shooter has reached its target speed.
+
+## Try It Yourself
+
+1. Write a condition that prints whether a number is positive, negative, or zero.
+2. Write a `for` loop that prints the numbers from 10 down to 1.
+3. Write a loop that prints every multiple of 5 from 5 to 50.
+4. Create two boolean variables named `buttonPressed` and `robotEnabled`. Print `"Motor running"` only when both are `true`.
+
+<details>
+<summary>Show possible answers</summary>
+
+```java
+// 1. Positive, negative, or zero
+int number = -4;
+
+if (number > 0) {
+  System.out.println("Positive");
+} else if (number < 0) {
+  System.out.println("Negative");
+} else {
+  System.out.println("Zero");
+}
+
+// 2. Countdown
+for (int i = 10; i >= 1; i--) {
+  System.out.println(i);
+}
+
+// 3. Multiples of 5
+for (int i = 5; i <= 50; i += 5) {
+  System.out.println(i);
+}
+
+// 4. Two requirements
+boolean buttonPressed = true;
+boolean robotEnabled = true;
+
+if (buttonPressed && robotEnabled) {
+  System.out.println("Motor running");
+}
+```
+
+</details>
+
+---
+
+Now you can make your program choose what to do and repeat work without duplicating code. Next, you will learn how to organize instructions into reusable methods.
