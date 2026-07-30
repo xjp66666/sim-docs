@@ -1,0 +1,45 @@
+---
+sidebar_position: 2
+title: PID Simulator
+description: Tune a PID controller and see how each gain changes a mechanism's response.
+---
+
+import PIDSimulator from '@site/src/components/PIDSimulator';
+
+# PID Simulator
+
+A PID controller is a feedback loop: it measures where a mechanism is, compares that measurement with the target, and adjusts the motor output to close the gap.
+
+The gap is called the **error**: `error = setpoint - measured position`.
+
+The controller combines three different ways of responding to that error:
+
+- **P — Proportional:** responds to the error right now. More P reacts faster, but too much can cause oscillation.
+- **I — Integral:** adds up error over time. It can remove a small, persistent error, but too much can cause overshoot.
+- **D — Derivative:** responds to how quickly the error changes. It helps slow the mechanism as it approaches the setpoint.
+
+<PIDSimulator />
+
+:::info Reading the graph
+The dashed line is the desired **set point**. The red line shows the calculated response. A good response reaches the set point quickly with little overshoot or oscillation.
+:::
+
+## Try it yourself
+
+Move the sliders and the complete response is drawn instantly. Change one gain at a time:
+
+1. Set **I** and **D** to zero, then slowly increase **P**. The response becomes faster, but eventually starts to bounce around the target.
+2. Add **D** until the bouncing settles down. D acts like a brake when the mechanism is moving toward the target too quickly.
+3. Add a small amount of **I** if the mechanism settles near the target but never quite reaches it.
+
+:::tip Tune one value at a time
+If several gains change together, it is hard to tell which one helped. Change one slider, observe the graph, and then make the next adjustment.
+:::
+
+## What the simulator models
+
+This simulation represents a generic motor-driven mechanism with inertia, damping, and a small opposing load. It calculates 15 seconds of behavior whenever a slider changes. The controller uses a 20 ms period, similar to the main loop of an FRC robot program.
+
+The values are meant to build intuition—not to be copied directly onto a robot. A real mechanism also has gearing, friction, backlash, gravity, changing loads, and sensor noise. Tune carefully on the real robot, keep an emergency stop nearby, and begin with conservative output limits.
+
+The design and first-order-plant teaching approach were inspired by [Luis Llamas's PID Controller Simulator](https://www.luisllamas.es/en/pid-controller-simulator/); this version uses an original simulation model and interface tailored to FRC students.
