@@ -1,0 +1,46 @@
+---
+sidebar_position: 2
+title: Subsystems
+description: Learn how subsystems organize the motors, sensors, and mechanisms on an FRC robot.
+---
+
+# Subsystems
+
+Every robot is composed of several subsystems, and each subsystem does their own job to make the robot work as a whole. 2026 season was a [shooting game](https://www.youtube.com/watch?v=j8wz5vw5XfE) and basically every robot had:
+
+`Drive base` so that the robot could move
+
+`Intake` to collect balls
+
+`Indexer` for sending balls to the shooter
+
+`Shooter/turret` that had adjustable hood angle to aim at different targets
+
+`Vision` for pose estimation
+
+## How the subsystems work together
+
+```text
+                          RobotContainer
+                    creates and connects everything
+                                 │
+             ┌───────────────────┴───────────────────┐
+             │                                       │
+      Driver controls                         Autonomous routine
+             │                                       │
+             └──────────────► Commands ◄─────────────┘
+                                 │
+                    tell subsystems what to do
+                                 │
+          ┌──────────┬───────────┼──────────┬──────────┐
+          ▼          ▼           ▼          ▼          ▼
+      Drive base   Intake     Indexer    Shooter     Vision
+          │          │           │          ▲          │
+          │          └──► ball ──┴─────────►│          │
+          │                                 │          │
+          └──────── moves the robot ◄──── aiming data ─┘
+```
+
+Each subsystem controls one part of the robot, but commands coordinate them to perform a complete action. For example, a shooting command can use vision to find the target, aim the shooter, run the indexer, and keep the drive base pointed in the correct direction.
+
+Subsystems that do not share hardware can run at the same time. The command scheduler prevents two commands from controlling the same subsystem at once.

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: The basic structure of an FRC coding project
 ---
 
 # Code Structure
@@ -120,6 +121,33 @@ private void configureBindings() {
 Be aware that when using `onTrue`, once the condition change from `false` to `true`, the command will be scheduled immediately, and you CAN'T cancel it by releasing the button. But for `whileTrue`, the command will be constantly re-scheduled until you release the button.
 :::
 
-## Constants
+## Constants.java
 
 If you forget what a constant is, check [here](../java-basics/variables-and-types#Variables-vs-Constants)
+
+`Constants.java` class is used to store global constants like ports, max current limit, etc. In this case, its `kDriverControllerPort`
+
+## Subsystems
+
+The `subsystems/` folder contains code for the robot's mechanisms, such as the drivetrain, intake, arm, or elevator. A subsystem manages its motors, sensors, and basic actions. For more details, check [subsystems](./subsystems) page.
+
+## Commands
+
+The `commands/` folder contains commands that tell one or more subsystems what actions to perform. For example, a command could move an elevator to a set height or run an intake until it detects a game piece.
+For more details, check [commands](./commands) page.
+
+## Other files
+
+- **`.gradle/`** stores Gradle's local cache and project data. You normally do not edit it.
+- **`.vscode/`** contains VS Code settings for the project.
+- **`.wpilib/`** stores WPILib project settings and version information.
+- **`build/`** contains files generated when the robot code is compiled. It can be recreated automatically.
+- **`gradle/`** contains the Gradle Wrapper files used to build the project with the correct Gradle version.
+- **`src/main/deploy/`** contains files that should be copied to the roboRIO, such as PathPlanner paths, AprilTag layouts, and configuration files.
+- **`vendordeps/`** contains JSON files for third-party libraries, such as REVLib, Phoenix, or PathPlanner.
+- **`.gitignore`** tells Git which generated or local files should not be committed.
+- **`build.gradle`** defines how the robot project is built, tested, and deployed.
+- **`gradlew`** runs Gradle on macOS or Linux without requiring a separate Gradle installation.
+- **`gradlew.bat`** is the Windows version of `gradlew`.
+- **`settings.gradle`** contains basic Gradle project settings, including the project name.
+- **`WPILib-License.md`** contains the license information for the WPILib project template.

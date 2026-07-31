@@ -1,0 +1,103 @@
+---
+sidebar_position: 3
+title: Commands
+description: Learn how commands tell FRC robot subsystems what actions to perform.
+---
+
+# Commands
+
+Before switching to command-based programming, we were using a classic timed-robot which made the code much too complicated and hard-to-read. Command-based programming is an example of declarative-programming, which basically means developers would focus on describing what a program should do rather than how its been done.
+
+It is now the main stream due to its simpleness and high-readability.
+
+## Basic Syntax
+
+Open the template project you just created, and go to `commands\ExampleCommand.java`
+
+Example below:
+
+```java
+public class ExampleCommand extends Command {
+  private final ExampleSubsystem m_subsystem;
+
+  public ExampleCommand(ExampleSubsystem subsystem) {
+    m_subsystem = subsystem;
+    addRequirements(subsystem);
+  }
+
+  @Override
+  public void initialize() {}
+
+  @Override
+  public void execute() {}
+
+  @Override
+  public void end(boolean interrupted) {}
+
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
+}
+```
+
+First the constructor takes in the parameters we need to execute this command. In this case, its `ExampleSubsystem`, and we use it as an requirement to proceed this command.
+
+### `initialize()`
+
+This method runs **once** when the command is first scheduled. Use it to prepare the command, reset values, or start an action that only needs to happen once.
+
+### `execute()`
+
+This method runs repeatedly while the command is scheduled, normally once every 20 ms. Use it for actions that must be updated continuously, such as reading a joystick or calculating motor output.
+
+```java
+@Override
+public void execute() {
+  m_subsystem.setSpeed(0.5);
+}
+```
+
+### `end()`
+
+This method runs once when the command finishes or is cancelled. Use it to stop motors and leave the subsystem in a safe state.
+
+The `interrupted` parameter is `false` when the command finishes normally and `true` when it is cancelled or replaced by another command.
+
+```java
+@Override
+public void end(boolean interrupted) {
+  m_subsystem.stopMotor();
+}
+```
+
+### `isFinished()`
+
+This method is checked repeatedly after `execute()`. It returns `true` when the command should end. Returning `false` means the command continues running until it is cancelled or interrupted.
+
+```java
+// Returns true when the command should end.
+@Override
+public boolean isFinished() {
+  return false;
+}
+```
+
+The order looks like this:
+
+```text
+Command scheduled
+       │
+       ▼
+ initialize()          runs once
+       │
+       ▼
+   execute()  ◄──┐     runs repeatedly
+       │         │
+       ▼         │
+ isFinished() ───┘     false: keep running
+       │
+      true
+       ▼
+     end()              runs once
+```
