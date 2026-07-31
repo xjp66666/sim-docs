@@ -21,7 +21,7 @@ function calculateResponse(kp, ki, kd) {
 
     const acceleration = output * 0.75 - velocity * 0.8 - value * 0.02;
     velocity += acceleration * dt;
-    value = clamp(value + velocity * dt, 0, 75) -0.5;
+    value = clamp(value + velocity * dt, 0, 75) -0.4 + ki;
     previousError = error;
     points.push({time, value});
   }
