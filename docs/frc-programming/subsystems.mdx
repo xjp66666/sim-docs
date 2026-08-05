@@ -44,3 +44,58 @@ Every robot is composed of several subsystems, and each subsystem does their own
 Each subsystem controls one part of the robot, but commands coordinate them to perform a complete action. For example, a shooting command can use vision to find the target, aim the shooter, run the indexer, and keep the drive base pointed in the correct direction.
 
 Subsystems that do not share hardware can run at the same time. The command scheduler prevents two commands from controlling the same subsystem at once.
+
+## Writing a subsystem
+
+A subsystem should own the hardware for one mechanism and provide small methods that commands can call. This example creates an intake subsystem that controls a Talon FX motor:
+
+```java title="IntakeSubsystem.java"
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.config.TalonFXConfigs;
+
+public class IntakeSubsystem extends SubsystemBase {
+
+  private TalonFX intakeMotor;
+
+  //constructor of IntakeSubsystem
+  public IntakeSubsystem() {
+    intakeMotor = new TalonFX(intakeConfigs.ID, intakeConfigs.CAN_BUS); //Constructing intake motor
+  }
+
+  public void intake() {
+    intakeMotor.set(INTAKE_VOLTAGE);
+  }
+
+  public void eject() {
+    intakeMotor.setVoltage(EJECT_VOLTAGE);
+  }
+
+  public void stop() {
+    intakeMotor.setVoltage(0);
+  }
+
+}
+```
+
+`IntakeSubsystem` extends `SubsystemBase`, which allows WPILib's command scheduler to treat it as a subsystem. Its constructor creates the `TalonFX` using the motor's CAN ID and CAN bus from `intakeConfigs`.
+
+This class has two main responsibilities:
+
+- It **owns the hardware**. Other classes should control the intake through this subsystem instead of accessing `intakeMotor` directly.
+- It **provides actions while hiding hardware details**. A command can call `intake()`, `eject()`, or `stop()` without needing to know the motor's CAN settings or output values.
+
+The constants `INTAKE_VOLTAGE` and `EJECT_VOLTAGE` determine how strongly and in which direction the motor runs. Keeping those values outside the action methods makes them easy to tune without changing the subsystem's behavior.
+
+## Constructing the subsystem
+
+Defining a subsystem class does not create the subsystem. You must construct it in `RobotContainer.java`:
+
+```java title="RobotContainer.java"
+private final IntakeSubsystem intake = new IntakeSubsystem();
+```
+
+This creates one `IntakeSubsystem` object when `RobotContainer` is created. That object initializes the intake hardware and is the shared instance used when you configure commands and controller buttons.
+
+Construct each subsystem only once. Commands should receive the existing subsystem through their constructors instead of creating a new one. Otherwise, multiple objects could try to represent and control the same physical hardware.

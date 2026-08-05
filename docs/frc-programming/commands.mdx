@@ -12,27 +12,34 @@ It is now the main stream due to its simpleness and high-readability.
 
 ## Basic Syntax
 
-Open the template project you just created, and go to `commands\ExampleCommand.java`
+The following command uses the `IntakeSubsystem` from the previous page. Create `IntakeCommand.java` inside the `commands` folder:
 
-Example below:
+```java title="IntakeCommand.java"
+package frc.robot.commands;
 
-```java
-public class ExampleCommand extends Command {
-  private final ExampleSubsystem m_subsystem;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IntakeSubsystem;
 
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    addRequirements(subsystem);
+public class IntakeCommand extends Command {
+  private final IntakeSubsystem intake;
+
+  public IntakeCommand(IntakeSubsystem intake) {
+    this.intake = intake;
+    addRequirements(intake);
   }
 
   @Override
   public void initialize() {}
 
   @Override
-  public void execute() {}
+  public void execute() {
+    intake.intake();
+  }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.stop();
+  }
 
   @Override
   public boolean isFinished() {
@@ -41,7 +48,7 @@ public class ExampleCommand extends Command {
 }
 ```
 
-First the constructor takes in the parameters we need to execute this command. In this case, its `ExampleSubsystem`, and we use it as an requirement to proceed this command.
+The constructor receives the existing `IntakeSubsystem` from `RobotContainer` and stores it in the `intake` field. `addRequirements(intake)` tells the command scheduler that this command uses the intake. While it is running, the scheduler will prevent another command that requires the same subsystem from running at the same time.
 
 ### `initialize()`
 
@@ -49,12 +56,12 @@ This method runs **once** when the command is first scheduled. Use it to prepare
 
 ### `execute()`
 
-This method runs repeatedly while the command is scheduled, normally once every 20 ms. Use it for actions that must be updated continuously, such as reading a joystick or calculating motor output.
+This method runs repeatedly while the command is scheduled, normally once every 20 ms. Here, it calls the subsystem's `intake()` method to keep the intake motor running.
 
 ```java
 @Override
 public void execute() {
-  m_subsystem.setSpeed(0.5);
+  intake.intake();
 }
 ```
 
@@ -67,7 +74,7 @@ The `interrupted` parameter is `false` when the command finishes normally and `t
 ```java
 @Override
 public void end(boolean interrupted) {
-  m_subsystem.stopMotor();
+  intake.stop();
 }
 ```
 
