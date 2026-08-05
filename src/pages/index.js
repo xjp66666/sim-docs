@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/get-ready/WPILib-installation">
+            to="/docs/get-ready/wpilib-installation">
             Getting Started
           </Link>
         </div>

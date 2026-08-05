@@ -1,0 +1,67 @@
+---
+sidebar_position: 4
+title: PID Simulator
+description: Learn the basics of PID control and see how each gain changes a mechanism's response.
+---
+
+import PIDSimulator from "@site/src/components/PIDSimulator";
+
+# PID Simulator
+
+A **PID controller** helps a mechanism reach and hold a target. For example, it can turn a robot to a certain angle, move an elevator to a certain height, or spin a shooter at a certain speed.
+
+The controller repeatedly compares the target, called the **setpoint**, with the current sensor measurement:
+
+```text
+error = setpoint - measurement
+```
+
+It uses that error to calculate how much output to send to the motor. PID stands for the three parts of the calculation:
+
+- **P — Proportional:** Reacts to the current error. A larger error creates a stronger response.
+- **I — Integral:** Adds up error over time. It can correct a small error that does not go away.
+- **D — Derivative:** Reacts to how quickly the error is changing. It can reduce overshoot and bouncing.
+
+<PIDSimulator />
+
+:::info[Reading the graph]
+The dashed line is the desired setpoint. The red line shows the simulated mechanism's response. A good response reaches the setpoint quickly without moving far past it or repeatedly bouncing around it.
+:::
+
+## Simple Example
+
+Suppose an elevator needs to move to `1.0` metre, but its sensor reads `0.7` metres:
+
+```text
+error = 1.0 - 0.7
+error = 0.3 metres
+```
+
+The PID controller uses this error to move the elevator upward. As the elevator gets closer to the setpoint, the error becomes smaller, so the controller reduces the motor output.
+
+## Tuning PID
+
+The values that control the strength of P, I, and D are called **gains**. Tuning means adjusting these gains until the mechanism responds well.
+
+A common starting process is:
+
+1. Set I and D to zero.
+2. Slowly increase P until the mechanism responds quickly but does not shake.
+3. Add a small amount of D if the mechanism overshoots or bounces around the target.
+4. Add I only if a small, steady error remains.
+
+:::warning
+Test PID values carefully. Start with low gains, keep the mechanism away from people, and be ready to disable the robot if it moves unexpectedly.
+:::
+
+PID values are different for every mechanism. Values that work for one robot should not be copied directly to another.
+
+## Try the Simulator
+
+Move one slider at a time so you can see what each gain changes:
+
+1. Set **I** and **D** to zero, then slowly increase **P**. The response becomes faster, but too much P makes it bounce around the target.
+2. Add **D** until the bouncing settles down. D acts like a brake as the mechanism approaches the target.
+3. Add a small amount of **I** if the mechanism stops near the target but does not quite reach it.
+
+The simulator represents a generic motor-driven mechanism. Its values are meant to build intuition and should not be copied directly to a real robot.

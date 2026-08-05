@@ -5,20 +5,20 @@ description: The basic structure of an FRC coding project
 
 # Code Structure
 
-Open a new FRC VS Code window, create a new project (`ctrl+shift+p`, then select `WPILib: Create a new project`) and follow the instructions below:
+Open a new FRC VS Code window and press `Ctrl+Shift+P`. Select **WPILib: Create a New Project**, then use these options:
 
 ```text
-select a project type: template
-select a language: Java
-select a project base: Command Robot
+Project type: Template
+Language: Java
+Project base: Command Robot
 
-base folder: use a proper folder
-project name: give it a proper name
+Base folder: choose where to save the project
+Project name: enter a descriptive name
 
-team number: 1114(your team number)
+Team number: 1114 (replace this with your team number)
 ```
 
-After WPILib generates the project, you will see the structure of the robot code is shown on file explorer:
+After WPILib generates the project, its files appear in the VS Code File Explorer:
 
 ![WPILib project shown in the VS Code File Explorer](./img/project-tree.png)
 
@@ -52,25 +52,25 @@ project-name/
 └── WPILib-License.md
 ```
 
-It looks a little bit complicated, but for now we only care about files under `src/main/java/frc/robot`, which contains `Main.java`, `Robot.java`, `RobotContainer.java`, `Constants.java` and `commands.java`. Let's talk about them separately.
+The project may look complicated at first. For now, focus on `src/main/java/frc/robot`, which contains `Main.java`, `Robot.java`, `RobotContainer.java`, and `Constants.java`, along with the `commands/` and `subsystems/` folders.
 
 ## Main.java
 
-This is the entrypoint of your robot code. `Robot::new` represents a constructor reference, which works the same way as:
+This is the entry point of your robot code. `Robot::new` is a constructor reference that works the same way as:
 
 ```java
 RobotBase.startRobot(() -> new Robot());
 ```
 
 :::warning[`Main.java`]
-Generally, you DON'T have to touch `Main.java`.
+You generally do not need to edit `Main.java`.
 :::
 
 ## Robot.java
 
-This is the place where you program what you want the robot to do during different periods, and where [robot container](#RobotContainer.java) should be constructed.
+This file defines what the robot does during each mode and constructs [`RobotContainer`](#robotcontainerjava).
 
-For example, since this is a [command-based](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html) robot, it has to detect if a command has been scheduled throughout a match, therefore we run the Scheduler periodically (every 20 ms):
+In a [command-based](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html) robot, the command scheduler must run periodically—normally every 20 ms—to manage commands and subsystem methods:
 
 ```java
 @Override
@@ -83,7 +83,7 @@ For example, since this is a [command-based](https://docs.wpilib.org/en/stable/d
   }
 ```
 
-And in autonomous period the robot will run the scheduled command sets according to the driver's choice:
+When autonomous mode begins, the robot schedules the autonomous command selected through `RobotContainer`:
 
 ```Java
 @Override
@@ -99,42 +99,37 @@ And in autonomous period the robot will run the scheduled command sets according
 
 ## RobotContainer.java
 
-The main structure of the robot, including subsystems, commands, and trigger mappings should all be declared here:
+The robot's subsystems, commands, and controller bindings should be declared here:
 
 ```java
-private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+private final IntakeSubsystem intake = new IntakeSubsystem();
 
 ...
 
 private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+  // Run the intake command while the Xbox controller's A button is held.
+  m_driverController.a().whileTrue(new IntakeCommand(intake));
 }
 ```
 
 :::tip[`onTrue` and `whileTrue`]
-Be aware that when using `onTrue`, once the condition change from `false` to `true`, the command will be scheduled immediately, and you CAN'T cancel it by releasing the button. But for `whileTrue`, the command will be constantly re-scheduled until you release the button.
+Use `onTrue` for an action that should start once when a button is pressed. Use `whileTrue` for an action that should run only while a button is held. In this example, releasing the A button cancels `IntakeCommand`, so its `end()` method stops the motor.
 :::
 
 ## Constants.java
 
-If you forget what a constant is, check [here](../java-basics/variables-and-types#Variables-vs-Constants)
+If you need a refresher, see [Variables vs. Constants](../java-basics/variables-and-types#variables-vs-constants).
 
-`Constants.java` class is used to store global constants like ports, max current limit, etc. In this case, its `kDriverControllerPort`
+The `Constants.java` class stores shared values such as controller ports and current limits. In the template project, one example is `kDriverControllerPort`.
 
 ## Subsystems
 
-The `subsystems/` folder contains code for the robot's mechanisms, such as the drivetrain, intake, arm, or elevator. A subsystem manages its motors, sensors, and basic actions. For more details, check [subsystems](./subsystems) page.
+The `subsystems/` folder contains code for robot mechanisms such as the drivetrain, intake, arm, or elevator. A subsystem manages its motors, sensors, and basic actions. See the [Subsystems](./subsystems) page for more details.
 
 ## Commands
 
 The `commands/` folder contains commands that tell one or more subsystems what actions to perform. For example, a command could move an elevator to a set height or run an intake until it detects a game piece.
-For more details, check [commands](./commands) page.
+See the [Commands](./commands) page for more details.
 
 ## Other files
 

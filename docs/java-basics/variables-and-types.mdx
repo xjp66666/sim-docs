@@ -12,7 +12,7 @@ Java has different **data types** for different kinds of information. For exampl
 
 ### int
 
-`int` is used to store whole numbers like `1` `2`, `3`, `67`; eg:
+`int` stores whole numbers such as `1`, `2`, `3`, and `67`:
 
 ```java
 int year = 2026;
@@ -24,17 +24,17 @@ int motorSpeed = 6000;
 
 ### double
 
-`double` is used to store a decimal number, like `-0.5`, `114.514`, `6.7`; eg:
+`double` stores decimal numbers such as `-0.5`, `114.514`, and `6.7`:
 
 ```java
-double PI = 3.14;
+double pi = 3.14;
 
 double currency = 0.71;
 ```
 
 ### boolean
 
-`boolean` type stores only `true` and `false`, which denotes `1` and `0` at low level computing.
+`boolean` stores one of two values: `true` or `false`.
 
 ```java
 
@@ -45,18 +45,18 @@ boolean iLikeCarrots = false;
 
 ### String
 
-`String` is used to store a bunch of characters. For FRC programming we basically use it to log & print data onto drive's dash board. The [hello world](./hello-world) code you just ran is a simple example of printing a string.
+`String` stores text. In FRC programs, strings are often used for log messages and information displayed on the driver's dashboard. The [Hello World](./hello-world) program is a simple example of printing a string.
 
 ```java
-System.out.print("I love programming!")
-System.out.println("I was lying") //println means starting a new line
+System.out.println("I love programming!");
+System.out.println("I was lying."); // println starts a new line after the text
 ```
 
 And the output will be:
 
 ```bash
 I love programming!
-I was lying
+I was lying.
 ```
 
 ### Basic Math Operators
@@ -82,10 +82,10 @@ A **variable** is a named place where data is stored. Its value can change while
 
 ```java
 int myAge = 16;
-myAge = 17; //I turned 17
+myAge = 17; // I turned 17
 
 int motorSpeed = 0;
-motorSpeed = 6000; //set motor speed to 6000
+motorSpeed = 6000; // Set the motor speed to 6000
 ```
 
 Here, `motorSpeed` starts at `0` and then changes to `6000`.
@@ -93,12 +93,12 @@ Here, `motorSpeed` starts at `0` and then changes to `6000`.
 A **constant** also stores data, but its value cannot change after it is assigned. In Java, constants use the `final` keyword. Their names are usually written in uppercase with underscores between words.
 
 ```java
-final float PI = 3.14;
+final double PI = 3.14;
 final int CONTROLLER_PORT = 0;
 ```
 
-Java compiler will yell at you if you try to change the value `PI` or `CONTROLLER_PORT`, since these two are declared as `final`, which means they will never change.
+The Java compiler reports an error if you try to change `PI` or `CONTROLLER_PORT` because both are declared with `final`.
 
 ---
 
-Now you've learned basic data types in java, and we are going to talk about conditions and loops next.
+Now that you have learned Java's basic data types, you are ready to explore conditions and loops.

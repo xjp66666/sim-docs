@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Officially starting FRC Programming tutorial"
+    "description": "Learn how an FRC robot project uses subsystems and commands."
   }
 }

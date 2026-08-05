@@ -6,7 +6,7 @@ const FeatureList = [
   {
     title: 'WPILib',
     Svg: require('@site/static/img/wpilib.svg').default,
-    link: 'https://xjp66666.github.io/sim-docs/docs/get-ready/WPILib-installation',
+    link: 'https://xjp66666.github.io/sim-docs/docs/get-ready/wpilib-installation',
     description: (
       <>
         <b>WPILib</b> is the official FRC robotics library, providing the core APIs for motor control, sensor input, and robot code structure.
@@ -16,6 +16,7 @@ const FeatureList = [
   {
     title: 'Java',
     Svg: require('@site/static/img/java.svg').default,
+    link: 'https://xjp66666.github.io/sim-docs/docs/category/java-basics',
     description: (
       <>
        <b>Java</b> is the programming language used to write the robot's code, providing the logic that controls its behavior.

@@ -1,0 +1,72 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# WPILib Installation
+
+The WPI Robotics Library (WPILib) provides the standard tools and libraries used to program FRC robots. You will use it throughout this guide.
+
+## Installation
+
+[Download the latest WPILib release](https://github.com/wpilibsuite/allwpilib/releases)
+
+WPILib supports Windows, macOS, and Linux. Download the release that matches your operating system and the FRC season you are programming for.
+
+<Tabs groupId="operating-systems">
+  <TabItem value="win" label="Windows">
+    Right-click the downloaded disk image and select **Mount**. Open the mounted image, launch `WPILibInstaller.exe`, and select **Start**.
+  </TabItem>
+  <TabItem value="mac" label="macOS">
+    Double-click the downloaded `.dmg` file, then open `WPILibInstaller`.
+  </TabItem>
+  <TabItem value="linux" label="Linux">
+    Extract the downloaded `.tar.gz` file, then launch `WPILibInstaller`. On Ubuntu, run the following commands in a terminal because the file explorer may treat the installer as a shared library. Replace `<version>` with the version you downloaded.
+    ```bash
+    tar -xf WPILib_Linux-<version>.tar.gz
+    cd WPILib_Linux-<version>/
+    ./WPILibInstaller
+    ```
+  </TabItem>
+</Tabs>
+
+![The WPILib installer start screen](https://docs.wpilib.org/en/stable/_images/installer-start.webp)
+
+![The WPILib installer options](https://docs.wpilib.org/en/stable/_images/installer-options.webp)
+
+If this is your first time using WPILib, select **Everything**. Choose **Install for this User** to install WPILib only for your account, or **Install for all Users** to make it available to every account on the computer.
+
+![The WPILib VS Code download options](https://docs.wpilib.org/en/stable/_images/installer-vscode-download.webp)
+
+If this is your first time using WPILib, select **Download for this computer only**.
+
+![WPILib installation progress](https://docs.wpilib.org/en/stable/_images/installer-installing.webp)
+
+Wait for the installation to finish.
+
+![The completed WPILib installation screen](https://docs.wpilib.org/en/stable/_images/installer-finish.webp)
+
+On the final screen, click **Finish** to close the installer.
+
+## Uninstalling
+
+<Tabs groupId="OS">
+  <TabItem value="win" label="Windows">
+    1. Delete the folder for the release you want to uninstall: `C:\Users\Public\wpilib\YYYY`, where `YYYY` is the season year.
+
+    2. Delete the corresponding desktop shortcuts from `C:\Users\Public\Public Desktop`.
+
+  </TabItem>
+  <TabItem value="mac" label="macOS">
+    Delete the folder for the release you want to uninstall: `~/wpilib/YYYY`, where `YYYY` is the season year.
+  </TabItem>
+  <TabItem value="linux" label="Linux">
+    Delete the folder for the release you want to uninstall: `~/wpilib/YYYY`, where `YYYY` is the season year.
+  </TabItem>
+</Tabs>
+
+---
+
+Congratulations! You have taken your first step into FRC programming.

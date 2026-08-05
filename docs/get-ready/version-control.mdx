@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Version Control
 
-Version control tracks changes to files over time, so you can see what changed, undo mistakes, and let multiple people work on the same project without overwriting each other. Git is the most popular vision-control tool programmers use. In this tutorial we are going to talk about the installation and configuration of Git, as well as how to use Git repo platforms like GitHub.
+Version control tracks changes to files over time, so you can review changes, undo mistakes, and let multiple people work on the same project without overwriting one another. Git is a widely used version-control tool. This tutorial explains how to install and configure Git and how to use a Git hosting platform such as GitHub.
 
 ## Installation
 
@@ -15,9 +15,9 @@ Version control tracks changes to files over time, so you can see what changed, 
 
 <Tabs groupId="operating-systems">
   <TabItem value="win" label="Windows">
-    Click on the [Click here to download](https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.2/Git-2.55.0.2-64-bit.exe) link
+    Download Git from the [official Git for Windows page](https://git-scm.com/download/win).
 
-    Open the installer you just downloaded, and keep all the settings as default. Wait for the installation to complete.
+    Open the installer, keep the default settings unless your team instructs you otherwise, and wait for the installation to finish.
 
   </TabItem>
   <TabItem value="mac" label="macOS">
@@ -25,9 +25,9 @@ Version control tracks changes to files over time, so you can see what changed, 
 
     **Homebrew**
 
-    Install homebrew if you don't already have it, then:
+    Install Homebrew if you do not already have it, then run:
 
-    `$ brew install git`
+    `brew install git`
 
 ---
 
@@ -35,7 +35,7 @@ Version control tracks changes to files over time, so you can see what changed, 
 
     Install MacPorts if you don't already have it, then:
 
-    `$ sudo port install git`
+    `sudo port install git`
 
 ---
 
@@ -43,83 +43,84 @@ Version control tracks changes to files over time, so you can see what changed, 
 
     Apple ships a binary package of Git with Xcode Command Line Tools. You can install this via:
 
-    `$ xcode-select --install`
+    `xcode-select --install`
 
   </TabItem>
   <TabItem value="linux" label="Linux">
     **Debian/Ubuntu**
 
-    For the latest stable version for your release of Debian/Ubuntu
+    To install the stable version provided by your Debian or Ubuntu release:
 
-    `# apt-get install git`
+    `sudo apt-get install git`
 
-    For Ubuntu, this PPA provides the latest stable upstream Git version
+    On Ubuntu, this PPA provides a newer stable upstream Git version:
 
     ```bash
-    # add-apt-repository ppa:git-core/ppa
-    # apt update; apt install git
+    sudo add-apt-repository ppa:git-core/ppa
+    sudo apt update
+    sudo apt install git
     ```
 
     **Fedora**
 
-    `# yum install git` (up to Fedora 21)
+    `sudo yum install git` (up to Fedora 21)
 
-    `# dnf install git` (Fedora 22 and later)
+    `sudo dnf install git` (Fedora 22 and later)
 
     **Gentoo**
 
-    `# emerge --ask --verbose dev-vcs/git`
+    `sudo emerge --ask --verbose dev-vcs/git`
 
     **Arch Linux**
 
-    `# pacman -S git`
+    `sudo pacman -S git`
 
     **openSUSE**
 
-    `# zypper install git`
+    `sudo zypper install git`
 
     **Mageia**
 
-    `# urpmi git`
+    `sudo urpmi git`
 
     **Nix/NixOS**
 
-    `# nix-env -i git`
+    `nix-env -i git`
 
     **FreeBSD**
 
-    `# pkg install git`
+    `sudo pkg install git`
 
     **Solaris 9/10/11 (OpenCSW)**
 
-    `# pkgutil -i git`
+    `sudo pkgutil -i git`
 
     **Solaris 11 Express, OpenIndiana**
 
-    `# pkg install developer/versioning/git`
+    `sudo pkg install developer/versioning/git`
 
     **OpenBSD**
 
-    `# pkg_add git`
+    `doas pkg_add git`
 
     **Alpine**
 
-    `$ apk add git`
+    `sudo apk add git`
 
     **Red Hat Enterprise Linux, Oracle Linux, CentOS, Scientific Linux, et al.**
 
-    RHEL and derivatives typically ship older versions of git. You can [download a tarball](https://www.kernel.org/pub/software/scm/git/) and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
+    RHEL and related distributions may provide older versions of Git. You can [download a source archive](https://www.kernel.org/pub/software/scm/git/) or use a trusted third-party repository to obtain a newer version.
 
     **Slitaz**
 
-    `$ tazpkg get-install git`
+    `sudo tazpkg get-install git`
 
   </TabItem>
 </Tabs>
 
 ## Configuring
 
-1. Open a [terminal](./VSCode-Configuration#terminal) in VSCode
+1. Open a [terminal](./vscode-configuration#terminal) in VS Code.
 2. Set a Git username:
 
 ```bash
@@ -148,44 +149,43 @@ email@example.com
 
 ## Making a GitHub Account
 
-GitHub is a website where developers can store and share projects that use Git. It allows multiple people to work on the same codebase, review each other’s changes, track problems, and
-keep an online copy of their work. Git runs on your computer, while GitHub hosts your Git repositories online.
+GitHub is a website where developers can store and share projects that use Git. It allows multiple people to work on the same codebase, review one another's changes, track problems, and keep an online copy of their work. Git runs on your computer, while GitHub hosts Git repositories online.
 
 <a href="https://github.com" target="_blank" rel="noopener noreferrer">
   Official GitHub Page
 </a>
 
-Click on `Sign up for GitHub` to make a new account. It does not matter wether you use your personal account or school account, since GitHub allows multiple emails to be connected to one GitHub account. Be aware that if you are using school account, you have to sign up through Google, and **you are not going to have access to your account after you graduate.**
+Click **Sign up for GitHub** to create an account. Use a personal email address that you will continue to have access to after graduation. You can add additional email addresses to the account later.
 
-Then, ask one of our programming mentors to add you to `Simbotics` organization. After that you will be able to access to our GitHub repos.
+Then ask a programming mentor to add you to the `Simbotics` organization. After accepting the invitation, you will be able to access the team's repositories.
 
 ## Authenticating with GitHub from Git
 
 1. In VS Code, click the Accounts icon in the bottom-left corner.
 
-2. Select Sign in with GitHub and approve the request in your browser.
+2. Select **Sign in with GitHub** and approve the request in your browser.
 
-3. Make a new folder for testing out Git
+3. Create a folder for testing Git.
 
-4. Make a new repo on GitHub: [Click me to make a repo](https://github.com/new)
+4. [Create a new repository on GitHub](https://github.com/new). Leave the options for adding a README, `.gitignore`, and license unchecked so the repository starts empty.
 
-5. Give your repo a name, then click `Create Repository`.
+5. Give the repository a name, then click **Create repository**.
 
-6. Copy the commands under `…or create a new repository on the command line`:
+6. Copy the commands under **…or create a new repository on the command line**:
 
-![this is an image](./img/new-repo.png)
+![Commands for creating a GitHub repository from the command line](./img/new-repo.png)
 
-7. Go back to VSCode and open the folder you just created. Open a terminal and paste the commands you copied. Press `Enter`.
+7. Return to VS Code and open the folder you created. Open a terminal, paste the copied commands, and press `Enter`.
 
-8. Run the command below to check if Git is connected to the repo:
+8. Run the command below to check whether Git is connected to the repository:
 
 ```bash
 git remote -v
 ```
 
-You should see results like below:
+You should see output similar to this:
 
-![this is an image](./img/check-repo.png)
+![Git remote information displayed in the terminal](./img/check-repo.png)
 
 ## Trying Version Control
 

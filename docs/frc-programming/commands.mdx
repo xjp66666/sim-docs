@@ -6,13 +6,13 @@ description: Learn how commands tell FRC robot subsystems what actions to perfor
 
 # Commands
 
-Before switching to command-based programming, we were using a classic timed-robot which made the code much too complicated and hard-to-read. Command-based programming is an example of declarative-programming, which basically means developers would focus on describing what a program should do rather than how its been done.
+In a traditional timed robot program, code for different mechanisms can become tangled and difficult to read. WPILib's command-based framework separates the robot's hardware into subsystems and its actions into commands.
 
-It is now the main stream due to its simpleness and high-readability.
+A command describes an action, such as running the intake or moving an elevator to a target height. Commands can be connected to controller buttons or combined into autonomous routines.
 
-## Basic Syntax
+## Basic Structure
 
-The following command uses the `IntakeSubsystem` from the previous page. Create `IntakeCommand.java` inside the `commands` folder:
+The following command uses the [`IntakeSubsystem`](./subsystems#writing-a-subsystem) from the previous page. Create `IntakeCommand.java` inside the `commands` folder:
 
 ```java title="IntakeCommand.java"
 package frc.robot.commands;
@@ -89,6 +89,14 @@ public boolean isFinished() {
   return false;
 }
 ```
+
+Because this intake command always returns `false`, it must be cancelled. A common approach is to run it only while the driver holds a button. Add a binding in `RobotContainer.java`:
+
+```java title="RobotContainer.java"
+m_driverController.a().whileTrue(new IntakeCommand(intake));
+```
+
+Pressing the A button schedules the command. Releasing the button cancels it, which causes `end()` to run and stop the intake motor.
 
 The order looks like this:
 

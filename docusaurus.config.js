@@ -96,7 +96,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -114,7 +114,7 @@ const config = {
             items: [
               {
                 label: 'Programming',
-                to: '/docs/get-ready/WPILib-installation',
+                to: '/docs/get-ready/wpilib-installation',
               },
             ],
           },

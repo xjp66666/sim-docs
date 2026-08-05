@@ -6,17 +6,17 @@ description: Learn how subsystems organize the motors, sensors, and mechanisms o
 
 # Subsystems
 
-Every robot is composed of several subsystems, and each subsystem does their own job to make the robot work as a whole. 2026 season was a [shooting game](https://www.youtube.com/watch?v=j8wz5vw5XfE) and basically every robot had:
+An FRC robot is composed of several subsystems. Each subsystem controls one part of the robot, and they work together to perform complete actions. The 2026 game, [REBUILT](https://www.youtube.com/watch?v=j8wz5vw5XfE), is a shooting game, so many robots use subsystems such as:
 
-`Drive base` so that the robot could move
+- A **drive base** that moves the robot.
 
-`Intake` to collect balls
+- An **intake** that collects game pieces.
 
-`Indexer` for sending balls to the shooter
+- An **indexer** that moves game pieces toward the shooter.
 
-`Shooter/turret` that had adjustable hood angle to aim at different targets
+- A **shooter or turret** that aims and launches game pieces.
 
-`Vision` for pose estimation
+- A **vision system** that helps estimate the robot's position.
 
 ## How the subsystems work together
 
@@ -47,25 +47,28 @@ Subsystems that do not share hardware can run at the same time. The command sche
 
 ## Writing a subsystem
 
-A subsystem should own the hardware for one mechanism and provide small methods that commands can call. This example creates an intake subsystem that controls a Talon FX motor:
+A subsystem should own the hardware for one mechanism and provide small methods that commands can call. This example creates an intake subsystem that controls a Talon FX motor. If CAN IDs and buses are new to you, review [How the Devices Communicate](../get-ready/hardware-components#how-the-devices-communicate) first.
 
 ```java title="IntakeSubsystem.java"
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.config.TalonFXConfigs;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 public class IntakeSubsystem extends SubsystemBase {
+  private static final int MOTOR_ID = 10;
+  private static final String CAN_BUS = "rio";
+  private static final double INTAKE_VOLTAGE = 6.0;
+  private static final double EJECT_VOLTAGE = -6.0;
 
-  private TalonFX intakeMotor;
+  private final TalonFX intakeMotor;
 
-  //constructor of IntakeSubsystem
   public IntakeSubsystem() {
-    intakeMotor = new TalonFX(intakeConfigs.ID, intakeConfigs.CAN_BUS); //Constructing intake motor
+    intakeMotor = new TalonFX(MOTOR_ID, CAN_BUS);
   }
 
   public void intake() {
-    intakeMotor.set(INTAKE_VOLTAGE);
+    intakeMotor.setVoltage(INTAKE_VOLTAGE);
   }
 
   public void eject() {
@@ -75,18 +78,17 @@ public class IntakeSubsystem extends SubsystemBase {
   public void stop() {
     intakeMotor.setVoltage(0);
   }
-
 }
 ```
 
-`IntakeSubsystem` extends `SubsystemBase`, which allows WPILib's command scheduler to treat it as a subsystem. Its constructor creates the `TalonFX` using the motor's CAN ID and CAN bus from `intakeConfigs`.
+`IntakeSubsystem` extends `SubsystemBase`, which allows WPILib's command scheduler to treat it as a subsystem. Its constructor creates the `TalonFX` using the specified CAN ID and CAN bus.
 
 This class has two main responsibilities:
 
 - It **owns the hardware**. Other classes should control the intake through this subsystem instead of accessing `intakeMotor` directly.
 - It **provides actions while hiding hardware details**. A command can call `intake()`, `eject()`, or `stop()` without needing to know the motor's CAN settings or output values.
 
-The constants `INTAKE_VOLTAGE` and `EJECT_VOLTAGE` determine how strongly and in which direction the motor runs. Keeping those values outside the action methods makes them easy to tune without changing the subsystem's behavior.
+The constants `INTAKE_VOLTAGE` and `EJECT_VOLTAGE` determine how strongly and in which direction the motor runs. The opposite signs make the motor turn in opposite directions. Keeping those values outside the action methods makes them easy to tune without changing the subsystem's behavior.
 
 ## Constructing the subsystem
 
