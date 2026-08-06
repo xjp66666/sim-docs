@@ -22,14 +22,14 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://xjp66666.github.io',
+  url: 'https://simbotics.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/sim-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'xjp66666', // Usually your GitHub org/user name.
+  organizationName: 'Simbotics', // Usually your GitHub org/user name.
   projectName: 'sim-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -52,7 +52,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/xjp66666/sim-docs/tree/main',
+            'https://github.com/Simbotics/sim-docs/tree/main',
         },
         blog: false, 
         //{
@@ -100,7 +100,7 @@ const config = {
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/xjp66666/sim-docs',
+            href: 'https://github.com/Simbotics/sim-docs',
             label: 'GitHub',
             position: 'right',
           },
@@ -144,7 +144,7 @@ const config = {
               // },
               {
                 label: 'GitHub',
-                href: 'https://github.com/xjp66666/sim-docs',
+                href: 'https://github.com/Simbotics/sim-docs',
               },
             ],
           },

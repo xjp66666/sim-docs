@@ -4,14 +4,14 @@ Sim-Docs is a beginner-friendly guide to FRC programming, built with
 [Docusaurus](https://docusaurus.io/).
 
 Read the documentation at
-[xjp66666.github.io/sim-docs](https://xjp66666.github.io/sim-docs/).
+[simbotics.github.io/sim-docs](https://simbotics.github.io/sim-docs/).
 
 ## Run Locally
 
 You will need [Node.js](https://nodejs.org/) installed.
 
 ```bash
-git clone https://github.com/xjp66666/sim-docs.git
+git clone https://github.com/Simbotics/sim-docs.git
 cd sim-docs
 npm install
 npm run start
